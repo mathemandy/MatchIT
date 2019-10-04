@@ -1,0 +1,37 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="ng.mathemandy.matchit">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".MatchITApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/MatchITAppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning, UnusedAttribute">
+
+        <activity
+            android:name=".screens.splash.SplashActivity"
+            android:theme="@style/MatchITAppTheme.Splash"
+            android:noHistory="true">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".screens.main.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MatchITAppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"
+
+            >
+
+        </activity>
+    </application>
+</manifest>

@@ -1,0 +1,19 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation(
+            RootDependencies.kotlinStandardLibrary,
+
+            AsyncDependencies.rxJava,
+
+            RootDependencies.javax,
+
+            fileTree(dir: 'libs', include: ['*.jar'])
+    )
+
+    kapt(
+            RootDependencies.javaxAnnotation
+    )
+}

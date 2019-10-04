@@ -1,0 +1,83 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+android {
+    compileSdkVersion Versions.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
+        versionCode Versions.versionCode
+        versionName Versions.versionName
+        multiDexEnabled true
+        consumerProguardFiles 'consumer-rules.pro'
+        testInstrumentationRunner 'io.appflate.restmock.android.RESTMockTestRunner'
+
+    }
+    dataBinding {
+        enabled = true
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+}
+
+
+dependencies {
+    implementation (
+            fileTree(dir: 'libs', include: ['*.jar']),
+
+            AndroidXDependencies.lifecycle,
+            AndroidXDependencies.appCompat,
+            AndroidXDependencies.androidFragmentKtx,
+            AndroidXDependencies.constraintLayout,
+            AndroidXDependencies.multidex,
+            AndroidXDependencies.navigationUiKtx,
+            AndroidXDependencies.navigationFragmentKtx,
+
+            ViewDependencies.materialComponent,
+
+            AsyncDependencies.rxJava,
+            AsyncDependencies.rxAndroid,
+
+            RootDependencies.javax,
+
+            project (":core"),
+            project (":domain"),
+            project (":navigation")
+    )
+    androidTestImplementation(
+            TestDependencies.mockTest,
+            TestDependencies.testRule,
+            TestDependencies.testRunner,
+            TestDependencies.espressoCore,
+
+    )
+
+    testImplementation(
+            TestDependencies.espressoCoreTest,
+            TestDependencies.espressoContrib,
+            TestDependencies.junit,
+            TestDependencies.materialMe,
+            TestDependencies.androidX,
+    )
+
+    kapt (
+            AndroidXDependencies.lifecycleCompiler,
+
+            RootDependencies.javaxAnnotation
+    )
+}

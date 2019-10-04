@@ -1,0 +1,17 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ng.mathemandy.authentication" >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application>
+
+        <activity
+            android:name=".presentation.AuthenticationActivity"
+            android:theme="@style/MatchITAppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+
+        </activity>
+    </application>
+
+
+</manifest>

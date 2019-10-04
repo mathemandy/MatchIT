@@ -1,0 +1,2 @@
+include ':app', ':core', ':navigation', ':domain', ':remote', ':repository', ':authentication', ':local', ':preference'
+rootProject.name='MatchIT'

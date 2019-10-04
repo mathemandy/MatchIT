@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion Versions.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
+        versionCode Versions.versionCode
+        versionName Versions.versionName
+
+        testInstrumentationRunner 'io.appflate.restmock.android.RESTMockTestRunner'
+
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    compileOptions {
+        targetCompatibility = "8"
+        sourceCompatibility = "8"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation(
+            fileTree(dir: 'libs', include: ['*.jar']),
+
+            RootDependencies.kotlinStandardLibrary,
+            RootDependencies.javax,
+            NetworkDependencies.okhttp,
+            NetworkDependencies.loggingInterceptor,
+            NetworkDependencies.retrofit,
+            NetworkDependencies.gsonConverter,
+            NetworkDependencies.rxJavaAdapter,
+
+            project(":repository")
+
+    )
+    androidTestImplementation(
+            TestDependencies.mockTest,
+            TestDependencies.testRule,
+            TestDependencies.testRunner,
+            TestDependencies.espressoCore
+    )
+
+    kapt(
+            RootDependencies.javaxAnnotation
+    )
+}
