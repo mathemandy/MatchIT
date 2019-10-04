@@ -136,7 +136,7 @@ class MatchItServiceTest {
         Assert.assertThat(request.path, `is`("/login"))
         Assert.assertThat(result, IsNull.notNullValue())
         Assert.assertThat(result?.success, `is` (false) )
-        Assert.assertThat(result?.message, `is`("internal issue summary") )
+        Assert.assertThat(result?.message, `is`("Internal issue, try again later") )
 
 
     }
