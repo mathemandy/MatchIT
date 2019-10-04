@@ -15,6 +15,7 @@ android {
 
     testOptions {
         unitTests.includeAndroidResources = true
+
     }
     defaultConfig {
         applicationId "ng.mathemandy.matchit"
@@ -25,12 +26,14 @@ android {
 
         buildConfigField("String", "BASE_URL", RootDependencies.baseUrl)
         multiDexEnabled true
-
-        testInstrumentationRunner 'io.appflate.restmock.android.RESTMockTestRunner'
+        testInstrumentationRunner "ng.mathemandy.matchit.util.MatchITTestRunner"
 
 
     }
     buildTypes {
+        debug {
+
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -52,7 +55,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
@@ -80,25 +82,41 @@ dependencies {
             AndroidXDependencies.multidex,
             AndroidXDependencies.lifecycle,
 
-            NetworkDependencies.okhttp,
             NetworkDependencies.loggingInterceptor,
             NetworkDependencies.retrofit,
             NetworkDependencies.gsonConverter,
             NetworkDependencies.rxJavaAdapter,
             PersistenceDependencies.roomRxJava,
             PersistenceDependencies.room,
-            AsyncDependencies.rxAndroid
-    )
-    androidTestImplementation(
-            TestDependencies.mockTest,
-            TestDependencies.testRunner,
-            TestDependencies.espressoCore,
+            AsyncDependencies.rxAndroid,
 
     )
+    androidTestImplementation(
+            TestDependencies.espressoCoreTest,
+            TestDependencies.espressoContrib,
+            TestDependencies.espressoIntents,
+            TestDependencies.mockito_core,
+            TestDependencies.mockito_android,
+            TestDependencies.androidX,
+            TestDependencies.mock_web_server,
+
+    )
+    testImplementation(
+            TestDependencies.junit,
+            TestDependencies.arch_core_testing,
+            TestDependencies.mockito_core,
+            TestDependencies.atsl_runner,
+            TestDependencies.atsl_rules,
+            TestDependencies.mock_web_server
+
+    )
+
     kapt(
             AndroidXDependencies.lifecycleCompiler,
             DependencyInjectionDependencies.daggerCompiler,
             DependencyInjectionDependencies.daggerAndroidProcessor
     )
     androidTestImplementation 'androidx.test:rules:1.3.0-alpha02'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    testImplementation "org.json:json:20140107"
 }

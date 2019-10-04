@@ -12,7 +12,8 @@ import retrofit2.http.POST
 interface AuthenticationService {
 
     @POST("login")
-    fun logUserIn(@Body data: HashMap<String, String>): Single<BaseMatchITRemoteModel<MatchITRemoteTokenModel>>
+    fun logUserIn(
+        @Body data: HashMap<String, String>): Single<BaseMatchITRemoteModel<MatchITRemoteTokenModel>>
 
     @GET("user")
     fun getAuthenticatedUser(): Single<BaseMatchITRemoteModel<MatchITRemoteUserModel>>

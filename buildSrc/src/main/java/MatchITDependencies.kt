@@ -42,7 +42,15 @@ object Versions {
     const val pinEntryEditText = "2.0.6"
     const val  mockTest = "0.4.0"
     const val androidXTestVersion = "1.3.0-alpha02"
-    const val espressoVersion = "3.1.0"
+    const val espressoVersion = "3.2.0"
+    const val mockwebserver = "4.2.1"
+    const val arch_core = "2.0.1"
+    const val  mockito = "2.25.0"
+    const val mockito_all = "1.10.19"
+    const val mockito_android = "2.25.0"
+    const val atsl_rules = "1.1.1"
+    const val atsl_runner = "1.1.1"
+    const val atsl_junit = "1.1.0"
 
 }
 
@@ -69,6 +77,19 @@ object TestDependencies  {
     val junit  =  "junit:junit:4.12"
     val espressoCoreTest =  "androidx.test.espresso:espresso-core:${espressoVersion}"
     val espressoContrib  = "androidx.test.espresso:espresso-contrib:${espressoVersion}"
+    val espressoIntents = "androidx.test.espresso:espresso-intents:${espressoVersion}"
+
+    val mock_web_server = "com.squareup.okhttp3:mockwebserver:${Versions.mockwebserver}"
+    val arch_core_testing = "androidx.arch.core:core-testing:${Versions.arch_core}"
+
+
+    val mockito_core = "org.mockito:mockito-core:${Versions.mockito}"
+    val mockito_all = "org.mockito:mockito-all:${Versions.mockito_all}"
+    val mockito_android = "org.mockito:mockito-android:${Versions.mockito_android}"
+
+    val atsl_ext_junit = "androidx.test.ext:junit:${Versions.atsl_junit}"
+    val atsl_runner = "androidx.test:runner:${Versions.atsl_runner}"
+    val atsl_rules = "androidx.test:rules:${Versions.atsl_rules}"
 
 }
 

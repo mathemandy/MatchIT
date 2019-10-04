@@ -12,8 +12,7 @@ android {
         versionCode Versions.versionCode
         versionName Versions.versionName
 
-        testInstrumentationRunner 'io.appflate.restmock.android.RESTMockTestRunner'
-
+        
         consumerProguardFiles 'consumer-rules.pro'
     }
 
@@ -46,12 +45,7 @@ dependencies {
             project(":repository")
 
     )
-    androidTestImplementation(
-            TestDependencies.mockTest,
-            TestDependencies.testRule,
-            TestDependencies.testRunner,
-            TestDependencies.espressoCore
-    )
+
 
     kapt(
             RootDependencies.javaxAnnotation

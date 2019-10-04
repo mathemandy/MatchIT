@@ -22,7 +22,7 @@ class AuthenticationRemoteImpl  @Inject constructor(
     ).performActionOnError().map {
         BaseMatchITRepositoryModel(
             success = it.success,
-            data = it.data?.access_token,
+            data = it.data?.token,
             message = it.message
         )
     }

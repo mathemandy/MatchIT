@@ -15,18 +15,14 @@ class MatchITResponseInterceptor @Inject constructor(
         val response = chain.proceed(chain.request())
         val body = JSONObject(response.body?.string())
 
-        Log.e("Interceptor", body.toString())
+
 
         val data : JSONObject?
-        data = if(response.code == 201 && response.message.toLowerCase(Locale.getDefault()) == "created"){
-            body
-        }else {
-            body.getJSONObject("data")
-        }
+        data = body
 
         val newResponse = when (response.code) {
             401 -> {
-                val errorMessage = data?.getString("message")
+                val errorMessage = data.getString("error")
                 JSONObject().apply {
                     put("success", false)
                     put("message", errorMessage)

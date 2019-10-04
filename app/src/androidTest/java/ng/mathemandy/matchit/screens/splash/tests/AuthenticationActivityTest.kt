@@ -1,15 +1,15 @@
 package ng.mathemandy.matchit.screens.splash.tests
 
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
-import io.appflate.restmock.RESTMockServer
-import io.appflate.restmock.RequestsVerifier
-import io.appflate.restmock.utils.RequestMatchers.pathEndsWith
 import ng.mathemandy.authentication.presentation.AuthenticationActivity
 import ng.mathemandy.matchit.screens.splash.pageobjects.AuthenticationActivityObject
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 
+@RunWith(AndroidJUnit4::class)
 class AuthenticationActivityTest {
 
     private val PATH_MATHEMANDY_PROFILE = "mocks/users/mathemandy/index.json"
@@ -27,33 +27,17 @@ class AuthenticationActivityTest {
     @Before
     fun setUp() {
         pageObjects = AuthenticationActivityObject()
-        RESTMockServer.reset()
     }
 
     @Test
     fun testLoginSuccess() {
-        RESTMockServer.whenGET(pathEndsWith("mathemandy")).thenReturnFile(
-            PATH_MATHEMANDY_PROFILE
-        )
         //launches  activity
         rule.launchActivity(null)
         pageObjects?.typePassword(PASSWORD)
-//        pageObjects?.pressLogIn()
-        RequestsVerifier.verifyRequest(pathEndsWith("mathemandy")).invoked()
-
-
-    }
-
-
-    fun testNotFound() {
-        RESTMockServer.whenGET(pathEndsWith(PASSWORD))
-            .thenReturnFile(404, PATH_INTERNAL_ISSUE)
-        //launches activity with default intent
-        rule.launchActivity(null)
-        pageObjects?.typePassword(PASSWORD)
         pageObjects?.pressLogIn()
-        RequestsVerifier.verifyRequest(pathEndsWith("login")).invoked()
+
     }
+
 
 
 
